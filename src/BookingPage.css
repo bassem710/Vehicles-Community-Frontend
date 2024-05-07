@@ -1,0 +1,56 @@
+.booking-container {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Set to full viewport height */
+    background-image: url('./assets/0x0.jpg.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.booking-content {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black; /* Set font color to black */
+
+    /* Fade-in animation */
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page-title {
+    color: #ff0000; /* Change to red */
+}
+
+.form-button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+label{
+    margin-bottom: 10px;
+}

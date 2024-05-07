@@ -1,0 +1,249 @@
+body {
+    margin: 0;
+    font-family: 'Fira Sans', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #e6e6e6 !important;
+}
+
+.home,
+.favorites,
+.events,
+.booking-container,
+.compare,
+.eventInfo,
+.news,
+.search,
+.login,
+.signUp,
+.admin {
+    min-height: calc(100vh - 60px - 60px);
+}
+
+.navbar{
+    background-color: rgb(41, 41, 41);
+    color: white;
+    height: 60px;
+}
+
+.view-item{
+    margin: 20px auto;
+    width: 98%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.item-info{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 98%;
+    backdrop-filter: blur(15px);
+    border-radius: 5px;
+}
+.view-item-img{
+    width: 44%;
+    height: 450px;
+    border-radius:15px;
+    box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.5);
+}
+.view-item-info{
+    color: black;
+    width: 50%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    font-weight: 500;
+    word-spacing: 1px;
+    flex-direction: column;
+    justify-content: center;
+}
+.view-item-price{
+    margin: 5px 0px;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+.events{
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.events-container{
+    display: flex;
+    width: 96%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0px;
+}
+.event{
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.5);
+    margin: 5px;
+    background-image: url("../src/assets/HD-wallpaper-stancenation-car-vehicle-portrait-display-fifteen52.jpg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.events-event-inf{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.245);
+    backdrop-filter: blur(10px);
+    color: white;
+    top: 230px;
+    height: 140px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 1;
+    transition: ease-in-out;
+    transition-duration: .5s;
+    cursor: pointer;
+    border-radius: 0px 0px 15px 15px;
+    z-index: 999;
+}
+
+.events .favourite-button {
+    position: relative !important;
+    bottom: 60px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.cars-container{
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    background-color: rgb(85, 83, 83);
+}
+.cars-container :hover{
+    box-shadow: 0px 0px 15px 0px;
+}
+.image-container img{
+    overflow: hidden;
+    height: 200px;
+    width: 300px;
+}
+.card-content{
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+h3,p{
+    margin: 0;
+    padding: 0;
+    color: aliceblue;
+}  
+
+.btn button{
+    padding: 0.5rem;
+    background-color: rgb(241, 241, 7);
+    animation: ease-in;
+}
+
+.compare{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+.compare-part{
+    display: flex;
+    width: 45%;
+    min-height: 100%;
+    background-color: rgba(255, 255, 255, 0.442);
+    border-radius: 10px;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.5);
+}
+.compare-part-img{
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.5);
+}
+
+.compare-part-info{
+    width: 94%;
+    height: -webkit-fill-available;
+    margin: 10px 0px;
+    overflow: overlay;
+    box-shadow: inset 0px 0px 15px -5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+}
+.compare-title{
+    font-weight: bold;
+    font-size: 42px;
+    transform: rotate(270deg);
+    margin: -20px;
+}
+
+.favourite-button{
+    /* background-color: rgb(228, 228, 228)!important; */
+    border-radius: 100% !important;
+    width: 40px!important;
+    height: 40px!important;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.365)!important;
+    display:flex!important ;
+    justify-content:center!important ;
+    align-items:center!important;
+    cursor: pointer !important;
+    pointer-events: all !important;
+}
+.favourite-button svg{
+    font-size: 100px !important;
+    color: green !important;
+}
+.choose-to-compare{
+    display: flex;
+    width: 45%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.442);
+    border-radius: 10px;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.5);
+    overflow-y: scroll;
+}
+.choose-item{
+width: 98%;
+height: 130px;
+border-radius: 15px;
+/* background-color: black; */
+box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.365)!important;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+padding: 10px;
+margin: 5px 0px;
+}
+.choose-item-img{
+    width: 220px;
+    height: 100px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.365)!important;
+    border-radius: 10px;
+}
+.choose-to-compare a{
+    text-decoration: none !important;
+    color: black !important;
+}
+footer{
+    height: 60px;
+    position: relative !important;
+    bottom: 0 !important;
+}

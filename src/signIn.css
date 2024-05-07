@@ -1,0 +1,31 @@
+.grad1{
+    background-image: url(https://cdn.carbuzz.com/gallery-images/1600/836000/400/836413.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1{
+    text-align: center;
+    color: #ffffff!important;
+}
+
+.box {
+    width: 400px;
+    height: fit-content;
+    backdrop-filter: blur(9px);
+    border: solid #ffffff 1px; 
+    border-radius: 10px; 
+}
+
+.input,.pass{
+    margin: 10px 0;
+    border: solid #ffffff 2px;
+    border-radius: 3%;
+    background-color: rgb(255, 255, 255);
+}
+
+input:focus,input{
+    outline: none;
+    border: none;
+}
