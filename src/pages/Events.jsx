@@ -6,6 +6,7 @@ import { baseUrl } from '../constants/constants';
 
 const Events = () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const url= baseUrl + "/events/all";
     const navigate = useNavigate();
     const [Events,SetEvents]=useState(null);
@@ -32,10 +33,10 @@ const Events = () => {
 
     const handleDelete = (id) => {
         axios.delete(baseUrl + `/events/deleteEvent/${id}`, {
-                headers: {Authorization: user && user.role === "admin" ? user._id : undefined}
+                headers: {Authorization: user && user.role === "ADMIN" ? token: undefined}
             })
             .then( _ => window.location.reload())
-            .catch( err => console.log(err?.response?.data?.message));
+            // .catch( err => console.log(err?.response?.data?.message));
     }
 
     return (
@@ -50,17 +51,17 @@ const Events = () => {
                         <h4>{loaded ? "No events found" : "Can't Get Events"}</h4> :
                         Events.map(
                             (Event)=>(
-                                <div key={Event._id}>
-                                    <div className='event my-4 text-decoration-none' key={Event._id} onClick={ _ => navigate("/events/" + Event._id)}>
-                                        <div className="events-event-inf" key={Event._id}>
+                                <div key={Event.id}>
+                                    <div className='event my-4 text-decoration-none' key={Event.id} onClick={ _ => navigate("/events/" + Event.id)}>
+                                        <div className="events-event-inf" key={Event.id}>
                                             <h5>{Event.title}</h5>
                                             <span>{Event.location}</span>
                                             <p>{getDayName(new Date(Event.date))}</p>
                                         </div>
                                     </div>
                                     {
-                                        user && user.role === "admin" &&
-                                        <button className='favourite-button btn ms-auto' onClick={ _ => handleDelete(Event._id)}>
+                                        user && user.role === "ADMIN" &&
+                                        <button className='favourite-button btn ms-auto' onClick={()=> handleDelete(Event.id)}>
                                             🗑️
                                         </button>
                                     }

@@ -6,6 +6,7 @@ import { baseUrl } from '../../constants/constants';
 const AddNews = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const imagesRef = useRef(null);
     const [image, setImage] = useState('');
     const [title, setTitle] = useState('');
@@ -15,21 +16,21 @@ const AddNews = () => {
 
     const handleAddNews = () => {
         setLoading(true);
-        if(!title || !imagesRef.current.value || !desc) {
+        if(!title  || !desc) {
             setError("Please fill all the required fields");
             setLoading(false);
             return;
         }
         // Form data
-        const formData = new FormData();
-        formData.append('userId', user._id);
-        formData.append('image', image);
-        formData.append('title', title);
-        formData.append('desc', desc);
+
         // Submit
-        axios.post(baseUrl + "/news/addNews", formData)
+        axios.post(baseUrl + "/news/add", {
+            title,
+            desc,
+            image
+        })
             .then( res => navigate(`/news`))
-            .catch( err => setError(err?.response?.data?.message))
+            // .catch( err => setError(err?.response?.data?.message))
             .finally( () => setLoading(false));
     }
 
@@ -38,7 +39,10 @@ const AddNews = () => {
             <h2 className="text-center p-1">Add News</h2>
             <div className="row">
                 {/* Image select */}
-                <input type="file" id="image" className='my-2' ref={imagesRef} onChange={ e => setImage(e.target.files[0])}/>
+                <div className="input-group mb-2">
+                <span className="input-group-text" id="inputGroup-sizing-default">Image</span>
+                <input type="text" value={image} id="image" className="form-control my-2" onChange={ e => setImage(e.target.value)}/>
+                </div>
                 {/* Title */}
                 <div className="col-12">
                     <div className="input-group mb-2">

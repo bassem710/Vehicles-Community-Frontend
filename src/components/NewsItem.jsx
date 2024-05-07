@@ -5,6 +5,7 @@ import { baseUrl } from '../constants/constants';
 
 const NewsItem = ({ id, title, body, imageUrl, date }) => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
     function getDayName(date = new Date(), locale = 'en-US') {
         return date.toLocaleDateString(locale, {weekday: 'long'}) +" - "+ date.toLocaleDateString(locale, {month: 'short', day: '2-digit'})+" - "+date.toLocaleDateString(locale, {year: "numeric"}) ;
@@ -12,7 +13,7 @@ const NewsItem = ({ id, title, body, imageUrl, date }) => {
 
     const handleDelete = () => {
         axios.delete(baseUrl + `/news/deleteNews/${id}`, {
-                headers: {Authorization: user && user.role === "admin" ? user._id : undefined}
+                headers: {Authorization: user && user.role === "ADMIN" ? token : undefined}
             })
             .then( _ => window.location.reload())
             .catch( err => console.log(err?.response?.data?.message));
@@ -27,7 +28,7 @@ const NewsItem = ({ id, title, body, imageUrl, date }) => {
                     <p className="card-text text-dark">{body}</p>
                     <p className="card-text">{getDayName(new Date(date))}</p>
                 {
-                    user && user.role === "admin" &&
+                    user && user.role === "ADMIN" &&
                     <button className='favourite-button btn ms-auto' onClick={handleDelete}>
                         🗑️
                     </button>

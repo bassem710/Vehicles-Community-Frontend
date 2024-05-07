@@ -14,7 +14,7 @@ const EventInfo = () => {
     axios
       .get(baseUrl + "/events/" +id)
       .then((res) => setEventInfo(res.data.data))
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
   }, [id]);
 
 

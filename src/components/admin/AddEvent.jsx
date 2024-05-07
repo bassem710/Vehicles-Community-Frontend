@@ -11,7 +11,7 @@ const AddEvent = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
+    const [description, setDesc] = useState("");
     const [location, setLocation] = useState("");
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
@@ -46,14 +46,13 @@ const AddEvent = () => {
         }
         // Submit
         axios.post(baseUrl + "/events/addEvent", {
-            userId: user._id,
             title,
-            desc,
+            description,
             location,
             date: dateValue
         })
-        .then( res => navigate(`/events/${res.data.data._id}`))
-        .catch( err => setError(err.response.data.message))
+        .then( res => navigate(`/events/`))
+        // .catch( err => setError(err.response.data.message))
         .finally( () => setLoading(false));
     }
 
@@ -80,7 +79,7 @@ const AddEvent = () => {
                 <textarea
                     className="form-control"
                     aria-label="With textarea"
-                    value={desc}
+                    value={description}
                     onChange={ e => setDesc(e.target.value)}
                 ></textarea>
             </div>

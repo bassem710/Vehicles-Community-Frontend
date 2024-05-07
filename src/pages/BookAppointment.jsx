@@ -6,15 +6,16 @@ import moment from 'moment';
 
 const BookAppointment = () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [existingBookings, setExistingBookings] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect( () => {
-        axios.get(baseUrl + "/appointments/myAppointments", {headers: {Authorization: user ? user._id : undefined}})
+        axios.get(baseUrl + "/appointments/myAppointments", {headers: {Authorization: user ? token : undefined}})
             .then( res => setExistingBookings(res.data.data))
-            .catch( err => console.log(err.response.data.message));
+            // .catch( err => console.log(err.response.data.message));
     })
 
     const handleBooking = () => {
@@ -41,9 +42,9 @@ const BookAppointment = () => {
             return;
         }
         // Submit
-        axios.post(baseUrl + "/appointments/addAppointment", {userId: user._id, date: dateValue})
+        axios.post(baseUrl + "/appointments/addAppointment", {userId: token, date: dateValue})
             .then( _ => window.location.reload())
-            .catch( err => setError(err.response.data.message));
+            // .catch( err => setError(err.response.data.message));
         // Reset 
         setSelectedDate(null);
         setSelectedTime(null);

@@ -5,21 +5,22 @@ import { baseUrl } from '../constants/constants';
 
 function cars({id, title, imageurl, price, liked}) {
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
     const handleLike = () => {
         axios.post(baseUrl + `/cars/likeChange/${id}`,{
-            userId: user.role === "user" ? user._id : undefined,
+            userId: user.role === "USER" ? user._id : undefined,
             newLikeState: liked ? false : true})
             .then( _ => window.location.reload())
-            .catch( err => console.log(err.response.data.message));
+            // .catch( err => console.log(err.response.data.message));
     }
 
     const handleDelete = () => {
-        axios.delete(baseUrl + `/cars/deleteCar/${id}`, {
-                headers: {Authorization: user && user.role === "admin" ? user._id : undefined}
+        axios.delete(baseUrl + `/vehicle/${id}`, {
+                headers: {Authorization: user && user.role === "ADMIN" ? token : undefined}
             })
             .then( _ => window.location.reload())
-            .catch( err => console.log(err?.response?.data?.message));
+            // .catch( err => console.log(err?.response?.data?.message));
     }
 
     return (

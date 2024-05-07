@@ -4,12 +4,13 @@ import { baseUrl } from '../../constants/constants';
 
 const Appointments = () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const [appointments, setAppointments] = useState(null);
 
     useEffect( () => {
-        axios.get(baseUrl + "/appointments/all", {headers: {Authorization: user ? user._id : undefined}})
+        axios.get(baseUrl + "/appointments/all", {headers: {Authorization:  token}})
             .then( res => setAppointments(res.data.data))
-            .catch( err => console.log(err.response.data.message));
+            // .catch( err => console.log(err.response.data.message));
     }, [user])
 
     function getDayName(date = new Date(), locale = 'en-US') {

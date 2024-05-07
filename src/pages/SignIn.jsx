@@ -8,25 +8,26 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const SignIn = () => {
    const navigate = useNavigate();
-   const [email ,setEmail ] = useState('');
+   const [username ,setusername ] = useState('');
    const [password ,setPassword ] = useState('');
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState('');
 
    useEffect( () => {
-      if (localStorage.getItem("user")) {
+      if (localStorage.getItem("token")) {
          navigate("/");
       }
    })
 
    const handleLogIn = () => {
       setLoading(true);
-      axios.post(baseUrl + "/user/sign-in", {email, password})
+      axios.post(baseUrl + "/auth/login", {username, password})
          .then( res => {
-            localStorage.setItem("user", JSON.stringify(res.data.data));
+            localStorage.setItem("token", JSON.stringify(res.data.token));
+            localStorage.setItem("user", JSON.stringify(res.data.userData));
             window.location.reload();
          })
-         .catch( err => setError(err.response.data.message))
+         // .catch( err => setError(err.response.data.message))
          .finally( () => setLoading(false))
    }
 
@@ -40,11 +41,11 @@ const SignIn = () => {
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                </svg>
                <input
-               placeholder='Email' 
-                  type="email" 
+               placeholder='username' 
+                  type="text" 
                   required 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={username}
+                  onChange={(e) => setusername(e.target.value)}
                />
             </div>
             {/* Password input */}

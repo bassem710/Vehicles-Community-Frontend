@@ -11,28 +11,27 @@ const AddCar = () => {
     const [image, setImage] =  useState('');
     const [title, setTitle] =  useState('');
     const [price, setPrice] =  useState("0");
-    const [desc, setDesc] =  useState('');
+    const [description, setDesc] =  useState('');
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleAddCar = () => {
         setLoading(true);
-        if(!title || !price || !imagesRef.current.value || !desc) {
+        if(!title || !price || !image || !description) {
             setError("Please fill all the required fields");
             setLoading(false);
             return;
         }
         // Form data
-        const formData = new FormData();
-        formData.append('userId', user._id);
-        formData.append('image', image);
-        formData.append('title', title);
-        formData.append('price', price);
-        formData.append('desc', desc);
         // Submit
-        axios.post(baseUrl + "/cars/addCar", formData)
-            .then( res => navigate(`/cars/${res.data.data._id}`))
-            .catch( err => setError(err?.response?.data?.message))
+        axios.post(baseUrl + "/vehicle/add", {
+            title,
+            description,
+            price,
+            image
+        })
+            .then( res => navigate(`/home/`))
+            // .catch( err => setError(err?.response?.data?.message))
             .finally( () => setLoading(false));
     }
 
@@ -41,7 +40,21 @@ const AddCar = () => {
             <h2 className="text-center p-1">Add Car</h2>
             <div className="row">
                 {/* Image select */}
-                <input type="file" id="image" className='my-2' ref={imagesRef} onChange={ e => setImage(e.target.files[0])}/>
+                <div className="col-sm-12 col-md-9">
+                    <div className="input-group mb-2">
+                        <span className="input-group-text" id="inputGroup-sizing-default">
+                        Image
+                        </span>
+                        <input
+                        value={image}
+                        onChange={ e => setImage(e.target.value)}
+                        type="text"
+                        className="form-control"
+                        id="image"
+                        />
+                    </div>
+                </div>
+                {/* <input type="file" id="image" className='my-2' ref={imagesRef} onChange={ e => setImage(e.target.files[0])}/> */}
                 {/* Title */}
                 <div className="col-sm-12 col-md-9">
                     <div className="input-group mb-2">
@@ -74,7 +87,7 @@ const AddCar = () => {
                 <span className="input-group-text">description</span>
                 <textarea
                     className="form-control"
-                    value={desc}
+                    value={description}
                     onChange={ e => setDesc(e.target.value)}
                 />
             </div>

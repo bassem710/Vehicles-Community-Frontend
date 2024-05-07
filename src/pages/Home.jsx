@@ -5,6 +5,7 @@ import { baseUrl } from '../constants/constants';
 
 const Home = () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const [cars, setCars] = useState(null);
 
     const [searchText, setSearchText] = useState('');
@@ -30,9 +31,9 @@ const Home = () => {
     }
 
     useEffect( _ => {
-        axios.get(baseUrl + "/cars/all", {headers: {Authorization: user ? user._id : undefined}})
+        axios.get(baseUrl + "/vehicle/all", {headers: {Authorization: user ? token : undefined}})
             .then( res => setCars(res.data.data))
-            .catch( err => console.log(err));
+            // .catch( err => console.log(err));
     }, [user])
 
     return (
@@ -55,8 +56,8 @@ const Home = () => {
                             {
                                 searchResult.map( car => {
                                     return <Cars
-                                        id={car._id}
-                                        key={car._id}
+                                        id={car.id}
+                                        key={car.id}
                                         title={car.title}
                                         imageurl={car.image}
                                         price={car.price}

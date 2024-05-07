@@ -6,11 +6,12 @@ import '../index.css';
 
 const Nav = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const [logged, setLogged] = useState(localStorage.getItem("user"));
+    const token = JSON.parse(localStorage.getItem('token'));
+    const [logged, setLogged] = useState(localStorage.getItem("token"));
 
     const handleLogout = () => {
         if(logged) {
-            localStorage.removeItem("user");
+            localStorage.removeItem("token");
             setLogged(false);
         }
     }
@@ -28,13 +29,13 @@ const Nav = () => {
                         <Link className="nav-link" aria-current="page" to="/home">Home</Link>
                     </li>
                     {
-                        logged && user.role === "user" &&
+                        logged && user.role === "USER" &&
                         <li className="nav-item">
                             <Link className="nav-link" aria-current="page" to="/favorites">Favorites</Link>
                         </li>
                     }
                     {
-                        logged && user.role === "user" &&
+                        logged && user.role === "USER" &&
                         <li className="nav-item">
                             <Link className="nav-link" aria-current="page" to="/book-appointment">Book Appointment</Link>
                         </li>
@@ -46,13 +47,13 @@ const Nav = () => {
                         <Link className="nav-link" aria-current="page" to="/news">News</Link>
                     </li>
                     {
-                        logged && user.role === "admin" &&
+                        logged && user.role === "ADMIN" &&
                         <li className="nav-item">
                             <Link className="nav-link" aria-current="page" to="/appointments">Appointments</Link>
                         </li>
                     }
                     {
-                        logged && user.role === "admin" &&
+                        logged && user.role === "ADMIN" &&
                         <li className="nav-item">
                             <Link className="nav-link" aria-current="page" to="/admin">Admin Panel</Link>
                         </li>
