@@ -20,6 +20,13 @@ const SignUp = () => {
   });
 
   const handleLogIn = () => {
+    if (!Fn || !Ls || !password || !username) {
+      setError("Invalid credentials");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+      return;
+    }
     setLoading(true);
     axios
       .post(baseUrl + "/auth/register", {
@@ -33,9 +40,8 @@ const SignUp = () => {
         localStorage.setItem("user", JSON.stringify(res.data.userData));
         window.location.reload();
       })
-      // .catch((err) => setError(err.response.data.message))
+      .catch((err) => setError("Invalid credentials"))
       .finally(() => setLoading(false));
-      
   };
 
   return (

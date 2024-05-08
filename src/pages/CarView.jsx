@@ -9,9 +9,9 @@ const CarView = () => {
     const [car, setCar] = useState(null);
 
     useEffect( _ => {
-        axios.get(`${baseUrl}/cars/${id}`)
+        axios.get(`${baseUrl}/vehicle/${id}`)
             .then( res => setCar(res.data.data))
-            .catch( err => console.log(err.response.data.message));
+            .catch( err => console.log("Something went wrong"));
     }, [id])
 
     return (
@@ -27,7 +27,7 @@ const CarView = () => {
                 <span className='view-item-price my-3'>
                     Price : <span className='text-danger'>{car.price} L.E.</span>
                 </span>
-                <Link to={"/compare/"+car._id}><button className='btn btn-dark my-1'>Compare</button></Link>
+                <Link to={"/compare/"+car.id}><button className='btn btn-dark my-1'>Compare</button></Link>
             </div>
             </div>
         </div>
